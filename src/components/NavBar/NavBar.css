@@ -4,12 +4,21 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  background-color: #f8f7f9;
+  background-color: #3f2f2f;
   color: #091540;
   padding: 0px 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .navbar-links {
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: #091540;
+}
+
+.navbar-links .navbar-icon {
+  font-size: 48px;
+  color: #ff9090;
 }
