@@ -5,7 +5,7 @@ import { NavBar } from "./components/NavBar/NavBar";
 import { Page } from "./components/Page/Page";
 import { Home } from "./pages/Home";
 
-function App() {
+export const App = () => {
   return (
     <div className="App">
       <Header />
