@@ -1,5 +1,10 @@
+import { FloatButton } from "../components/FloatButton/FloatButton"
+
 export const Home = () => {
     return (
-        <div>Home</div>
+        <div>
+            Home
+            <FloatButton />
+        </div>
     )
 }

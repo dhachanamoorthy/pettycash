@@ -1,0 +1,11 @@
+
+.floatbutton-container{
+    position:fixed;
+    bottom: 11vh;
+    right:10px;
+}
+
+.floatbutton-container .floatbutton{
+    font-size: 48px;
+    color: #3f2f2f;
+}
