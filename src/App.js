@@ -4,13 +4,13 @@ import { Header } from "./components/Header/Header";
 import { NavBar } from "./components/NavBar/NavBar";
 import { Page } from "./components/Page/Page";
 import { Home } from "./pages/Home";
-
+import { Loader } from "./components/Loader/Loader";
 export const App = () => {
   return (
     <div className="App">
       <Header />
       <Page>
-        <Home />
+        <Loader/>
       </Page>
       <NavBar />
     </div>
