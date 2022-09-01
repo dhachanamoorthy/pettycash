@@ -1,15 +1,28 @@
 .navbar {
-  height: 10vh;
+  height: 8vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   background-color: #3f2f2f;
+<<<<<<< HEAD
   color: #ff9090;
+=======
+  color: #091540;
+>>>>>>> 510fd564bf606943cf3a46335722ec9625732906
   padding: 0px 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .navbar-links {
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
+  color: #ff9090;
+}
+
+.navbar-links .navbar-icon {
+  font-size: 32px;
   color: #ff9090;
 }
