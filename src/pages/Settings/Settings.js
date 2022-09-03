@@ -1,8 +1,7 @@
-
 export const Report=()=>{
     return(
         <div>
-            Report
+            Settings
         </div>
     )
 }
