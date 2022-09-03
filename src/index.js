@@ -14,7 +14,7 @@ root.render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="/report" element={<Home />} />
-          <Route path="/settings" element={<Home />} />
+          <Route path="/settings" element={<Home />} /> // refer : https://reactrouter.com/web/example/route-config
           <Route path="add" element={<Add />} />
           {/* <Route path="teams" element={<Teams />}>
             <Route path=":teamId" element={<Team />} />
