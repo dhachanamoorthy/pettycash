@@ -22,7 +22,7 @@ export const Home = () => {
       <Link to="/add">
       <SpeedDial
         ariaLabel="SpeedDial basic example"
-        sx={{ position: "absolute", bottom: 72, right: 16 }}
+        sx={{ position: "absolute", bottom: 82, right: 20 }}
         icon={<AddIcon />}
         onClick={handleclick}
       ></SpeedDial>

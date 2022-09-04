@@ -3,9 +3,9 @@ import "./App.css";
 import { Header } from "./components/Header/Header";
 import { NavBar } from "./components/NavBar/NavBar";
 import { Page } from "./components/Page/Page";
-import { Home } from "./pages/Home/Home";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material/styles";
+import { Outlet } from "react-router-dom";
 export const App = () => {
   const theme = createTheme({
     typography: {
@@ -17,7 +17,7 @@ export const App = () => {
       <div className="App">
         <Header />
         <Page>
-          <Home />
+          <Outlet/>
         </Page>
         <NavBar />
       </div>

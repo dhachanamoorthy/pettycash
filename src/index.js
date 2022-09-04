@@ -4,8 +4,12 @@ import "./index.css";
 import App from "./App";
 import { Home } from "./pages/Home/Home";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter,Routes,Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Add } from "./pages/Home/Add";
+import { Report } from "./pages/Report/Report";
+import { Setting } from "./pages/Setting/Setting";
+import {Error404} from "./components/Error/404";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -13,18 +17,13 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="/report" element={<Home />} />
-          <Route path="/settings" element={<Home />} /> // refer : https://reactrouter.com/web/example/route-config
+          <Route path="reports" element={<Report />} />
+          <Route path="settings" element={<Setting />} />
           <Route path="add" element={<Add />} />
-          {/* <Route path="teams" element={<Teams />}>
-            <Route path=":teamId" element={<Team />} />
-            <Route path="new" element={<NewTeamForm />} />
-            <Route index element={<LeagueStandings />} />
-          </Route> */}
+          <Route path="*" element={<Error404 />} /> 
         </Route>
       </Routes>
     </BrowserRouter>
-    <App />
   </React.StrictMode>
 );
 
