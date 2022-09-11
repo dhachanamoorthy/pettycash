@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  Box,
   Container,
   ToggleButtonGroup,
   ToggleButton,
@@ -11,22 +10,81 @@ import {
   TextField,
   Button,
   Stack,
+  Paper
 } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 import { Transx } from "../../constants/Transx";
-import { ExpenseCategory } from "../../constants/ExpenseCategory";
-import { IncomeCategory } from "../../constants/IncomeCategory";
+import { Income, Expense } from "../../constants/Category";
 export const Add = (props) => {
-  const [transType, setAlignment] = useState(Transx.EXPENSE);
-
+  const ExpenseCategory = Expense;
+  const IncomeCategory = Income;
+  let [categories, setCategories] = useState(ExpenseCategory);
+  let [transType, setTransxType] = useState(Transx.EXPENSE);
+  let [transaction,setTransaction]=useState({});
+  let [amount,setAmount]=useState(0);
+  let[notes,setNotes]=useState("Notes");
+  let transactions = [];
+  let [transactionId,setTransactionId]=useState(transactions.length);
+  let _id =1;
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 30 },
+    {
+      field: 'category',
+      headerName: 'Category',
+      width: 90,
+      editable: true,
+    },
+    {
+      field: 'transType',
+      headerName: 'Type',
+      width: 90,
+      editable: true,
+    },
+    {
+      field: 'amount',
+      headerName: 'Amount',
+      type: 'number',
+      width: 80,
+      editable: true,
+    }
+  ];
   const handleTransTypeChange = (event, newTransType) => {
-    setAlignment(newTransType);
+    setTransxType(newTransType);
   };
 
-  const [category, setCategory] = useState(ExpenseCategory.FOOD);
+  let [category, setCategory] = useState(ExpenseCategory.FOOD);
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
   };
+
+  const createSelectOptions = () => {
+    let items = [];
+    items = Object.keys(categories).map(key =>
+      <option value={key}>{categories[key]}</option>
+    )
+    console.log(items);
+    return items;
+  }
+
+  const addTransaction=()=>{
+    console.log("Called");
+    const transaction={
+      id:_id,
+      category:category,
+      amount:amount,
+      notes:notes,
+      transType:transType
+    }
+    _id++;
+    console.log(transaction);
+    transactions.push(transaction);
+  }
+
+  useEffect(() => {
+    categories = transType === Transx.EXPENSE ? setCategories(ExpenseCategory) : setCategories(IncomeCategory);
+    setCategory(transType === Transx.EXPENSE ? ExpenseCategory.FOOD : IncomeCategory.SALARY);
+  }, [transType])
 
   return (
     <Container
@@ -40,12 +98,14 @@ export const Add = (props) => {
         },
       }}
     >
-      <Box
+      <Paper
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          "& > :not(style)": { m: 1 },
+          paddingX:2,
+          maxHeight:330,
+          "& > :not(style)": { m: 1},
         }}
       >
         <FormControl>
@@ -72,23 +132,27 @@ export const Add = (props) => {
             label="Age"
             onChange={handleCategoryChange}
           >
-            {transType === Transx.EXPENSE
-              ? Object.keys(ExpenseCategory).map((key, value) => {
-                  console.log(key, value);
-                  <MenuItem value={key}>{value}</MenuItem>;
-                })
-              : Object.keys(IncomeCategory).map((key, value) => {
-                  <MenuItem value={key}>{value}</MenuItem>;
-                })}
+            {createSelectOptions()}
           </Select>
         </FormControl>
-        <TextField id="demo-helper-text-misaligned" label="Amount" />
-        <TextField id="demo-helper-text-misaligned" label="Note" />
+        <TextField id="demo-helper-text-misaligned" label="Amount" onChange={e=>setAmount(e.target.value)}/>
+        <TextField id="demo-helper-text-misaligned" label="Note" onChange={e=>setNotes(e.target.value)}/>
         <Stack spacing={2} direction="row">
           <Button variant="contained">Done</Button>
-          <Button variant="contained">Add</Button>
+          <Button variant="contained" onClick={addTransaction()}>Add</Button>
         </Stack>
-      </Box>
+      </Paper>
+      <Paper sx={{maxHeight:330}}>
+        <DataGrid
+          rows={transactions}
+          columns={columns}
+          pageSize={4}
+          rowsPerPageOptions={[5]}
+          disableSelectionOnClick
+          experimentalFeatures={{ newEditingApi: true }}
+       />
+      </Paper>
+
     </Container>
   );
 };

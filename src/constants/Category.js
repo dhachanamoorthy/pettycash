@@ -1,4 +1,4 @@
-export const ExpenseCategory = {
+export const Expense = {
     FOOD: "Food",
     TRAVEL: "Travel",
     ENTERTAINMENT: "Entertainment",
@@ -19,3 +19,15 @@ export const ExpenseCategory = {
     SAVINGS: "Savings",
     CLOTHING: "Clothing",
 };
+
+export const Income = {
+    SALARY: "Salary",
+    BONUS: "Bonus",
+    INVESTMENT: "Investment",
+    OTHERS: "Others",
+    RENTAL: "Rental",
+    INTEREST: "Interest",
+    LOAN:"Loan",
+}
+
+export default [Income,Expense]
